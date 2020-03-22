@@ -1,4 +1,16 @@
-#circle-canvas{
+#circle-canvas {
     border-style: solid;
     border-width: 1px;
+}
+
+#points-table th,td {
+    border: 1px solid black;
+}
+
+.blue-text{
+    color: blue;
+}
+
+.orange-text{
+    color: orange;
 }
