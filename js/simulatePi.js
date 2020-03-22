@@ -146,8 +146,15 @@ function updatePointsTableElement(points) {
     let tableElement = document.getElementById("points-table");
     tableElement.textContent = "";
 
-    //make header
+    //make title header
     let tableRow = document.createElement("tr");
+    let tableHeader = document.createElement("th");
+    tableHeader.setAttribute("colspan", 4);
+    tableHeader.textContent = "Points";
+    tableElement.appendChild(tableHeader);
+
+    //make header
+    tableRow = document.createElement("tr");
 
     let headerNum = document.createElement("th")
     headerNum.textContent = "#";
