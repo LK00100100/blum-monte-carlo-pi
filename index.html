@@ -12,14 +12,38 @@
 
 <body onload="initCanvas()">
     <h1>Monte Carlo Simulation To Estimate Pi</h1>
-    <p>description here</p>
+    <p>
+        Monte Carlo methods, or simulations, are a broad class of computational
+        algorithms that rely on repeated random sampling to obtain numerical results.
+        <br><br>
+        One method to estimate the value of π (3.141592…) is by using a Monte Carlo method.
+        This methods consists of drawing a square with an inner circle. Then
+        counting how many fall in the enclosed circle.
+        <br><br>
+        The area of the circle is 𝐴 = 𝜋𝑟<sup>2</sup>
+        <br><br>
+        The area of the square is 𝐴 = 𝑙𝑒𝑛𝑔𝑡h<sup>2</sup> = (2𝑟)<sup>2</sup>
+        <br><br>
+        If we divide the area of the circle, by the area of the square we get π/4.
+        The same ratio can be used between the number of points within the square and
+        the circle
+        <br><br>
+        Hence we can use the following formula to estimate Pi:
+        <br><br>
+        π ≈ 4 x (number of points in the circle / total number of points)
+    </p>
+
     <button type="simulate-btn" onclick="simulate()">Click Me!</button>
-    <br>
+    <br><br>
     <!-- init'd by script.js -->
     <canvas id="circle-canvas" width="0" height="0"></canvas>
 
-    <table id="points-table">
-    </table>
+    <div id="points-stats">
+        <span id="num-points-total"></span>
+        <span id="num-points-in-circle"></span>
+        <span id="num-points-out-circle"></span>
+    </div>
+    <table id="points-table"></table>
 </body>
 
 </html>

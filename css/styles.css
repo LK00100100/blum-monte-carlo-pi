@@ -3,14 +3,30 @@
     border-width: 1px;
 }
 
-#points-table th,td {
+#points-stats {
+    display: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#points-stats span {
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+}
+
+#points-table {
     border: 1px solid black;
 }
 
-.blue-text{
+#points-table th, td {
+    border: 1px solid black;
+}
+
+.blue-text {
     color: blue;
 }
 
-.orange-text{
+.orange-text {
     color: orange;
 }

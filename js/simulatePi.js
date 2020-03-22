@@ -35,7 +35,8 @@ function initCanvas() {
 /**
  * actually does the monte carlo simulation 
  * 
- * points
+ * points are generated.
+ * then various UI elements are updated.
  */
 function simulate() {
     clearCanvas();
@@ -66,8 +67,9 @@ function simulate() {
         points.push([random_x, random_y, isWithinCircle]);
     }
 
-    //update points-table
-    updatePointsTable(points);
+    //update UI elements
+    updatePointsTableElement(points);
+    updatePointsStatsElement(points);
 };
 
 //clears the canvas completely
@@ -100,7 +102,7 @@ function isWithinInnerCircle(x, y) {
 }
 
 /**
- * Draws a circle on the canvas at x, y
+ * Draws a small circle on the canvas at x, y
  * @param {CanvasRenderingContext2D} ctx 
  * @param {Number} x canvas coordinate 
  * @param {Number} y canvas coordinate
@@ -138,9 +140,10 @@ function getRandomIntInclusive(min, max) {
 
 /**
  * Clears and updates the points table
- * @param {Array} points an array of arrays. [[x:Number, y:Number, isWithinCircle:Boolean]]
+ * @param {Array} points an array of arrays.
+ * [[x:Number, y:Number, isWithinCircle:Boolean]]
  */
-function updatePointsTable(points) {
+function updatePointsTableElement(points) {
     let tableElement = document.getElementById("points-table");
     tableElement.textContent = "";
 
@@ -197,4 +200,24 @@ function updatePointsTable(points) {
         tableElement.appendChild(tableRow);
     });
 
+}
+
+/**
+ * updates the points stats with actual stats
+ * @param {Array} points an array of arrays.
+ * [[x:Number, y:Number, isWithinCircle:Boolean]]
+ */
+function updatePointsStatsElement(points) {
+    document.getElementById("points-stats").style.display = "block";
+
+    const numInCircle = points.filter(point => point[2] == true).length;
+    const numOutCircle = points.length - numInCircle;
+
+    let totalMessage = "Total # Points: " + points.length;
+    let inCircleMessage = "# Points in of circle: " + numInCircle;
+    let outCircleMessage = "# Points out of circle: " + numOutCircle
+
+    document.getElementById("num-points-total").textContent = totalMessage;
+    document.getElementById("num-points-in-circle").textContent = inCircleMessage;
+    document.getElementById("num-points-out-circle").textContent = outCircleMessage;
 }
