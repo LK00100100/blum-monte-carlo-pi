@@ -15,11 +15,13 @@
     padding: 10px;
 }
 
-#points-table {
-    border: 1px solid black;
+#tables table {
+    vertical-align: top;
+    display: inline-table;
+    margin-bottom: 10px;
 }
 
-#points-table th, td {
+table, th, td {
     border: 1px solid black;
 }
 

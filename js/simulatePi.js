@@ -68,7 +68,7 @@ function simulate() {
 
     //update UI elements
     updatePointsTableElement(points);
-    updatePointsStatsElement(points);
+    updatePointsStatsAndHistory(points);
 };
 
 //clears the canvas completely
@@ -210,10 +210,11 @@ function updatePointsTableElement(points) {
 
 /**
  * updates the points stats with actual stats
+ * and the pi history table
  * @param {Array} points an array of arrays.
  * [[x:Number, y:Number, isWithinCircle:Boolean]]
  */
-function updatePointsStatsElement(points) {
+function updatePointsStatsAndHistory(points) {
     document.getElementById("points-stats").style.display = "block";
 
     const numInCircle = points.filter(point => point[2] == true).length;
@@ -229,4 +230,29 @@ function updatePointsStatsElement(points) {
     document.getElementById("num-points-in-circle").textContent = inCircleMessage;
     document.getElementById("num-points-out-circle").textContent = outCircleMessage;
     document.getElementById("pi-text").textContent = piEstimateMessage;
+
+    appendPiHistory(piEstimate);
+}
+
+/**
+ * Adds a pi entry to the pi history table
+ * @param {Number} pi 
+ */
+function appendPiHistory(pi){
+    let piTable = document.getElementById("pi-history-table");
+
+    let numEntries = piTable.children.length;
+
+    //create and append row
+    let tableRow = document.createElement("tr");
+
+    let numEntry = document.createElement("td");
+    numEntry.textContent = numEntries;
+
+    let piEntry = document.createElement("td");
+    piEntry.textContent = pi;
+
+    tableRow.appendChild(numEntry);
+    tableRow.appendChild(piEntry);
+    piTable.appendChild(tableRow);
 }
