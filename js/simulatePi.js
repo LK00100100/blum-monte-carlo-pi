@@ -49,6 +49,7 @@ function simulate() {
 
     //list of [[x, y, isWithinCircle]...]
     //ex: [[1,2 , true]]
+    //NOTE: could use dict/obj if this gets more complicated
     let points = [];
 
     //get a bunch of random points and draw them.
@@ -216,8 +217,11 @@ function updatePointsStatsElement(points) {
     let totalMessage = "Total # Points: " + points.length;
     let inCircleMessage = "# Points in of circle: " + numInCircle;
     let outCircleMessage = "# Points out of circle: " + numOutCircle
+    let piEstimate = 4 * (numInCircle / points.length);
+    let piEstimateMessage = "Pi Estimate: " + piEstimate;
 
     document.getElementById("num-points-total").textContent = totalMessage;
     document.getElementById("num-points-in-circle").textContent = inCircleMessage;
     document.getElementById("num-points-out-circle").textContent = outCircleMessage;
+    document.getElementById("pi-text").textContent = piEstimateMessage;
 }
