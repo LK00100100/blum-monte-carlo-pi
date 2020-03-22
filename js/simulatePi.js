@@ -219,11 +219,12 @@ function updatePointsStatsAndHistory(points) {
 
     const numInCircle = points.filter(point => point[2] == true).length;
     const numOutCircle = points.length - numInCircle;
+    const totalPoints = points.length;
 
-    let totalMessage = "Total # Points: " + points.length;
+    let totalMessage = "Total # Points: " + totalPoints;
     let inCircleMessage = "# Points in of circle: " + numInCircle;
     let outCircleMessage = "# Points out of circle: " + numOutCircle
-    let piEstimate = 4 * (numInCircle / points.length);
+    let piEstimate = 4 * (numInCircle / totalPoints);
     let piEstimateMessage = "Pi Estimate: " + piEstimate;
 
     document.getElementById("num-points-total").textContent = totalMessage;
@@ -231,14 +232,15 @@ function updatePointsStatsAndHistory(points) {
     document.getElementById("num-points-out-circle").textContent = outCircleMessage;
     document.getElementById("pi-text").textContent = piEstimateMessage;
 
-    appendPiHistory(piEstimate);
+    appendPiHistory(piEstimate, totalPoints);
 }
 
 /**
  * Adds a pi entry to the pi history table
  * @param {Number} pi 
+ * @param {Number} numPoints total number of points used
  */
-function appendPiHistory(pi){
+function appendPiHistory(pi, numPoints){
     let piTable = document.getElementById("pi-history-table");
 
     let numEntries = piTable.children.length;
@@ -246,13 +248,17 @@ function appendPiHistory(pi){
     //create and append row
     let tableRow = document.createElement("tr");
 
-    let numEntry = document.createElement("td");
-    numEntry.textContent = numEntries;
+    let tdNum = document.createElement("td");
+    tdNum.textContent = numEntries;
 
-    let piEntry = document.createElement("td");
-    piEntry.textContent = pi;
+    let tdPi = document.createElement("td");
+    tdPi.textContent = pi;
 
-    tableRow.appendChild(numEntry);
-    tableRow.appendChild(piEntry);
+    let tdNumPoints = document.createElement("td");
+    tdNumPoints.textContent = numPoints;
+
+    tableRow.appendChild(tdNum);
+    tableRow.appendChild(tdPi);
+    tableRow.appendChild(tdNumPoints);
     piTable.appendChild(tableRow);
 }
