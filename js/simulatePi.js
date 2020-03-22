@@ -5,6 +5,8 @@
  * inner circle: within the inner square. These are orange dots.
  */
 
+ window.onload = initCanvas;
+
 //constants used by the #circle-canvas
 const CANVAS_CONST = {
     MAX_HEIGHT: 500,
@@ -107,7 +109,7 @@ function isWithinInnerCircle(x, y) {
  * Default is no fill. ex: blue.
  */
 function drawCircle(ctx, x, y, targetColor) {
-    let radius = 3;
+    let radius = 2;
     let startAngle = 0;
     let endAngle = 2 * Math.PI;
 
