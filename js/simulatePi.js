@@ -7,12 +7,8 @@
 
 //constants used by the #circle-canvas
 const CANVAS_CONST = {
-    MAX_HEIGHT: 300,
-    MAX_WIDTH: 300,
-    SQUARE_LEFT_X: 10,
-    SQUARE_RIGHT_X: 20,
-    SQUARE_UP_Y: 10,
-    SQUARE_DOWN_Y: 10
+    MAX_HEIGHT: 500,
+    MAX_WIDTH: 500,
 };
 
 //the inner-square to draw stuff used by the #circle-canvas
@@ -41,8 +37,8 @@ function initCanvas() {
 function simulate() {
     clearCanvas();
 
-    //note: you can get this from an input box later...
-    let numPointsToGenerate = 1000;
+    let numPoints = document.getElementById("num-points-input").value;
+    let numPointsToGenerate = parseInt(numPoints);
 
     let canvas = document.getElementById("circle-canvas");
     let ctx = canvas.getContext("2d");
