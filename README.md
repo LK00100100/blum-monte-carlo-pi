@@ -1,2 +1,4 @@
 # blum-monte-carlo-pi
-Monte Carlo Simulation to estimate the value of Pi
+This is a Monte Carlo simulation to estimate the value of Pi.
+
+This is a demo for Mr. Blum. It is using bare basic web technology.
