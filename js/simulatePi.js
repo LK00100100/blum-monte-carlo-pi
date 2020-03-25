@@ -5,29 +5,47 @@
  * inner circle: within the inner square. These are orange dots.
  */
 
- window.onload = initCanvas;
+window.onload = init;
 
 //constants used by the #circle-canvas
+//re-set by initCanvas if the screen gets smaller
 const CANVAS_CONST = {
     MAX_HEIGHT: 500,
     MAX_WIDTH: 500,
 };
 
 //the inner-square to draw stuff used by the #circle-canvas
+const INNER_SQUARE_BORDER_PX = 20;  //the pixel thickness of the inner square border
 const INNER_SQUARE = {
-    SQUARE_LEFT_X: 20,
-    SQUARE_RIGHT_X: CANVAS_CONST.MAX_WIDTH - 20,
-    SQUARE_UP_Y: 20,
-    SQUARE_DOWN_Y: CANVAS_CONST.MAX_HEIGHT - 20
+    SQUARE_LEFT_X: INNER_SQUARE_BORDER_PX,
+    SQUARE_RIGHT_X: "init'd by initInnerSquare",
+    SQUARE_UP_Y: INNER_SQUARE_BORDER_PX,
+    SQUARE_DOWN_Y: "init'd by initInnerSquare"
 };
 
-//initialize canvas. called by html's body onload.
+//called when the document loads.
+function init() {
+    initCanvas();
+    initInnerSquare();
+}
+
+//initialize canvas.
 function initCanvas() {
     let canvas = document.getElementById("circle-canvas");
+
+    //if it's on a smaller screen, make it smaller.
+    //should be a square.
+    CANVAS_CONST.MAX_HEIGHT = Math.min(CANVAS_CONST.MAX_HEIGHT, document.body.clientWidth);
+    CANVAS_CONST.MAX_WIDTH = Math.min(CANVAS_CONST.MAX_WIDTH, document.body.clientWidth);
 
     canvas.setAttribute("height", CANVAS_CONST.MAX_HEIGHT);
     canvas.setAttribute("width", CANVAS_CONST.MAX_WIDTH);
 };
+
+function initInnerSquare() {
+    INNER_SQUARE.SQUARE_RIGHT_X = CANVAS_CONST.MAX_WIDTH - INNER_SQUARE_BORDER_PX;
+    INNER_SQUARE.SQUARE_DOWN_Y = CANVAS_CONST.MAX_HEIGHT - INNER_SQUARE_BORDER_PX;
+}
 
 //
 /**
@@ -240,7 +258,7 @@ function updatePointsStatsAndHistory(points) {
  * @param {Number} pi 
  * @param {Number} numPoints total number of points used
  */
-function appendPiHistory(pi, numPoints){
+function appendPiHistory(pi, numPoints) {
     let piTable = document.getElementById("pi-history-table");
 
     let numEntries = piTable.children.length;
